@@ -25,7 +25,7 @@ impl V4 {
     pub fn to_octal(&self) -> String {
         self.octets
             .iter()
-            .map(|octet| octet_to_octal(octet))
+            .map(octet_to_octal)
             .collect::<Vec<_>>()
             .join(".")
     }
@@ -33,7 +33,7 @@ impl V4 {
     pub fn to_hex(&self) -> String {
         self.octets
             .iter()
-            .map(|octet| octet_to_hex(octet))
+            .map(octet_to_hex)
             .collect::<Vec<_>>()
             .join(".")
     }
@@ -60,7 +60,7 @@ impl V4 {
                 let mut new_permutations = Vec::new();
 
                 for permutation in folding_permutations {
-                    new_permutations.push(format!("{}.{}", permutation, octet.to_string()));
+                    new_permutations.push(format!("{}.{}", permutation, octet));
                     new_permutations.push(format!("{}.{}", permutation, octet_to_octal(octet)));
                     new_permutations.push(format!("{}.{}", permutation, octet_to_hex(octet)));
                 }
@@ -102,7 +102,7 @@ fn octet_to_octal(octet: &u8) -> String {
     format!("0{:o}", octet)
 }
 
-pub fn to_decimal(octets: &Vec<&u8>) -> u32 {
+pub fn to_decimal(octets: &[&u8]) -> u32 {
     octets
         .iter()
         .rev()

@@ -23,22 +23,22 @@ fn main() {
             let v4 = V4::new(ipv4.octets().to_vec());
 
             print_banner("decimal");
-            println!("{}", format!("|{:^38}|", v4.to_decimal()));
+            println!("|{:^38}|", v4.to_decimal());
 
             print_banner("octal");
-            println!("{}", format!("|{:^38}|", v4.to_octal()));
+            println!("|{:^38}|", v4.to_octal());
 
             print_banner("hexadecimal");
-            println!("{}", format!("|{:^38}|", v4.to_hex()));
+            println!("|{:^38}|", v4.to_hex());
 
             print_banner("ipv6");
-            println!("{}", format!("|{:^38}|", v4.to_ipv6()));
+            println!("|{:^38}|" ,v4.to_ipv6());
 
             print_banner("permutations");
             for permutation in v4.permutations() {
-                println!("{}", format!("|{:^38}|", permutation));
+                println!("|{:^38}|", permutation);
             }
-            println!("{}", format!("{:=<40}", "="));
+            println!("{:=<40}", "=");
         },
         IpAddr::V6(ipv6) => {
             let v6 = V6 { octets: ipv6.octets().to_vec() };
@@ -48,7 +48,7 @@ fn main() {
 }
 
 fn print_banner(text: &str) {
-    println!("{}", format!("{:=<40}", "="));
-    println!("{}", format!("|{:^38}|", text.to_uppercase()));
-    println!("{}", format!("{:=<40}", "="));
+    println!("{:=<40}", "=");
+    println!("|{:^38}|", text.to_uppercase());
+    println!("{:=<40}", "=");
 }
